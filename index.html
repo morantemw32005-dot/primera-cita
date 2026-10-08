@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Aceptas salir conmigo?</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ffe6e8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 90%;
+    }
+    img {
+      max-width: 200px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      color: #e63946;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    #btn-si {
+      background-color: #2a9d8f;
+      color: white;
+      font-weight: bold;
+    }
+    #btn-no {
+      background-color: #e63946;
+      color: white;
+      font-weight: bold;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Vista Principal -->
+  <div id="pantalla-pregunta" class="card">
+    <img id="gif-pregunta" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHYya3pxZ3p2ZTRyeTdzOHpucmd5Z2E1OHllOGJzcWJidWpud2hhYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LbfT59dQsm1Tq/giphy.gif" alt="Gatito tierno">
+    <h1 id="titulo">¿Quieres salir conmigo? 🌹</h1>
+    <div class="btn-container">
+      <button id="btn-si" onclick="aceptarCita()">¡Sí!</button>
+      <button id="btn-no" onclick="agrandarSi()">No</button>
+    </div>
+  </div>
+
+  <!-- Vista de Confirmación -->
+  <div id="pantalla-confirmacion" class="card hidden">
+    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnlyazR1ZGNsaXRmbG1sbXV4N3FiMzA2eHBjOWFrc3EydGVicDZqYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif" alt="Celebración">
+    <h1>¡Sabía que dirías que sí! 🥰</h1>
+    <p style="font-size: 18px; color: #333; line-height: 1.5;">
+      Paso a recogerte el <strong>domingo 18 de octubre a las 11:00 AM</strong> en tu casa. ✨
+    </p>
+  </div>
+
+  <script>
+    let escalaSi = 1;
+    const frasesNo = [
+      "¿Segura?",
+      "¿De verdad no?",
+      "¡Piénsalo bien!",
+      "¡Por favor!",
+      "No me hagas esto 🥺",
+      "¡Mira lo grande que se hace el SÍ!"
+    ];
+    let contadorNo = 0;
+
+    function agrandarSi() {
+      const btnSi = document.getElementById('btn-si');
+      const btnNo = document.getElementById('btn-no');
+      
+      // Incrementa el tamaño del botón SÍ
+      escalaSi += 0.4;
+      btnSi.style.transform = `scale(${escalaSi})`;
+      
+      // Cambia el texto del botón NO
+      if (contadorNo < frasesNo.length) {
+        btnNo.innerText = frasesNo[contadorNo];
+        contadorNo++;
+      } else {
+        btnNo.innerText = "¡Ya di que sí! ❤️";
+      }
+    }
+
+    function aceptarCita() {
+      document.getElementById('pantalla-pregunta').classList.add('hidden');
+      document.getElementById('pantalla-confirmacion').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
